@@ -1,0 +1,3 @@
+package: github.com/gotutorial/weather-cli
+import:
+- package: github.com/urfave/cli
