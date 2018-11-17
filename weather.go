@@ -1,11 +1,11 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"os"
 	"sort"
 
+	services "github.com/gotutorial/weather-cli/services"
 	"github.com/urfave/cli"
 )
 
@@ -16,37 +16,38 @@ func main() {
 	app.Version = "1.0.0"
 	app.HideHelp = false
 
+	var city string
+
 	app.Flags = []cli.Flag{
 		cli.StringFlag{
-			Name:  "city, ct",
-			Value: "Atlanta",
-			Usage: "The city name you are looking for its current weather condition (defaut is 'Atlanta')",
+			Name:        "city, ct",
+			Value:       "Atlanta",
+			Usage:       "The city name you are looking for its current weather condition (defaut is 'Atlanta')",
+			Destination: &city,
 		},
 		cli.StringFlag{
 			Name:  "country, co",
 			Usage: "The country name you are looking for its current weather condition (default is empty)",
 		},
 		cli.BoolFlag{
-      Name: "temp, tm",
-      Usage: "The location current temperature"
-    },
-    cli.BoolFlag{
-      Name: "desc, ds",
-      Usage: "The location current description"
-    },
-    cli.BoolFlag{
-      Name: "hum, hm",
-      Usage: "The location current humidity"
-    },
+			Name:  "temp, tm",
+			Usage: "The location current temperature",
+		},
+		cli.BoolFlag{
+			Name:  "desc, ds",
+			Usage: "The location current description",
+		},
+		cli.BoolFlag{
+			Name:  "hum, hm",
+			Usage: "The location current humidity",
+		},
 	}
 
 	app.Action = func(c *cli.Context) error {
-		if c.Bool("fancy") {
-			fmt.Printf("YESSSSSSS\n")
+		if len(city) > 0 {
+			services.weatherByCity("Atlanta", "", true, true, true)
 		}
-		if c.Bool("nasim") {
-			fmt.Printf("NASIM\n")
-		}
+
 		return nil
 	}
 
