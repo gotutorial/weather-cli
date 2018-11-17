@@ -7,7 +7,7 @@ import (
 	"strings"
 )
 
-func weatherByCity(city string, country string, temprature bool, description bool, humidity bool) {
+func WeatherByCity(city string, country string, temprature bool, description bool, humidity bool) {
 	var url strings.Builder
 	url.WriteString("http://api.openweathermap.org/data/2.5/weather")
 	url.WriteString("?q")
@@ -16,6 +16,8 @@ func weatherByCity(city string, country string, temprature bool, description boo
 		url.WriteString(",")
 		url.WriteString(country)
 	}
+	url.WriteString("&appid=")
+	url.WriteString("6bee18b26ef8ab0fb51dfa2b55d79ed5")
 
 	response, err := http.Get(url.String())
 

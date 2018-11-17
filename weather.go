@@ -5,7 +5,7 @@ import (
 	"os"
 	"sort"
 
-	services "github.com/gotutorial/weather-cli/services"
+	"github.com/gotutorial/weather-cli/services"
 	"github.com/urfave/cli"
 )
 
@@ -45,7 +45,7 @@ func main() {
 
 	app.Action = func(c *cli.Context) error {
 		if len(city) > 0 {
-			services.weatherByCity("Atlanta", "", true, true, true)
+			services.WeatherByCity("Atlanta", "", true, true, true)
 		}
 
 		return nil
