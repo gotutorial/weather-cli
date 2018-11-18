@@ -9,15 +9,14 @@ import (
 	"github.com/Jeffail/gabs"
 )
 
-type WeatherForcast struct {
+type CurrentWeather struct {
 	location    string
-	forcastDate string
-	forcast     string
+	description string
 	tempurature string
 	humidity    string
 }
 
-func WeatherByCity(city string, country string, description bool, temprature bool, humidity bool) (*WeatherForcast, error) {
+func CurrentWeatherByCity(city string, country string, description bool, temprature bool, humidity bool) (*CurrentWeather, error) {
 	var url strings.Builder
 	url.WriteString("http://api.openweathermap.org/data/2.5/weather")
 	url.WriteString("?q=")
@@ -46,13 +45,12 @@ func WeatherByCity(city string, country string, description bool, temprature boo
 
 		location, _ := jsonParsed.Path("name").Data().(string)
 
-		weatherForcast := &WeatherForcast{
+		currentWeather := &CurrentWeather{
 			location:    location,
-			forcastDate: "string",
-			forcast:     "string",
+			description: "string",
 			tempurature: "string",
 			humidity:    "string",
 		}
-		return weatherForcast, nil
+		return currentWeather, nil
 	}
 }

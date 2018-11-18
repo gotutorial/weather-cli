@@ -15,10 +15,9 @@ func TestSimple(t *testing.T) {
 		Reply(200).
 		File("weather_api_response_200.json")
 
-	var forcast *WeatherForcast
-	forcast, _ = WeatherByCity("Atlanta", "", true, true, true)
+	currentWeather, _ := CurrentWeatherByCity("Atlanta", "", true, true, true)
 
-	st.Expect(t, forcast.location, `Atlanta`)
+	st.Expect(t, currentWeather.location, `Atlanta`)
 	// Verify that we don't have pending mocks
 	st.Expect(t, gock.IsDone(), true)
 }

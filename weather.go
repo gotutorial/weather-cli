@@ -46,7 +46,7 @@ func main() {
 
 	app.Action = func(c *cli.Context) error {
 		if len(city) > 0 {
-			var reponse = services.WeatherByCity("Atlanta", "", true, true, true)
+			var reponse = services.CurrentWeatherByCity("Atlanta", "", true, true, true)
 			fmt.Println(reponse)
 		}
 
