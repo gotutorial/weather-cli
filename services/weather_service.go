@@ -5,6 +5,8 @@ import (
 	"log"
 	"net/http"
 	"strings"
+
+	"github.com/Jeffail/gabs"
 )
 
 type WeatherForcast struct {
@@ -35,8 +37,17 @@ func WeatherByCity(city string, country string, description bool, temprature boo
 	} else {
 		data, _ := ioutil.ReadAll(response.Body)
 
+		jsonParsed, err := gabs.ParseJSON([]byte(string(data)))
+
+		if err != nil {
+			log.Fatal(err)
+			return nil, err
+		}
+
+		location, _ := jsonParsed.Path("name").Data().(string)
+
 		weatherForcast := &WeatherForcast{
-			location:    string(data),
+			location:    location,
 			forcastDate: "string",
 			forcast:     "string",
 			tempurature: "string",
