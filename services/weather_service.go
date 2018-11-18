@@ -10,7 +10,7 @@ import (
 func WeatherByCity(city string, country string, temprature bool, description bool, humidity bool) {
 	var url strings.Builder
 	url.WriteString("http://api.openweathermap.org/data/2.5/weather")
-	url.WriteString("?q")
+	url.WriteString("?q=")
 	url.WriteString(city)
 	if len(country) > 0 {
 		url.WriteString(",")
