@@ -1,6 +1,7 @@
 package services
 
 import (
+	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -44,10 +45,22 @@ func CurrentWeatherByCity(city string, country string, description bool, temprat
 		}
 
 		location, _ := jsonParsed.Path("name").Data().(string)
+		descriptions, _ := jsonParsed.Path("weather.description").Children()
+
+		var descriptionString string
+
+		for i, description := range descriptions {
+			descriptionString += description.Data().(string)
+			if i < len(descriptions)-1 {
+				descriptionString += ", "
+			}
+		}
+
+		fmt.Println(len(descriptions))
 
 		currentWeather := &CurrentWeather{
 			location:    location,
-			description: "string",
+			description: descriptionString,
 			tempurature: "string",
 			humidity:    "string",
 		}

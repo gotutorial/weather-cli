@@ -18,6 +18,7 @@ func TestSimple(t *testing.T) {
 	currentWeather, _ := CurrentWeatherByCity("Atlanta", "", true, true, true)
 
 	st.Expect(t, currentWeather.location, `Atlanta`)
+	st.Expect(t, currentWeather.description, `mist`)
 	// Verify that we don't have pending mocks
 	st.Expect(t, gock.IsDone(), true)
 }
