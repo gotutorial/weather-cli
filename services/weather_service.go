@@ -1,13 +1,21 @@
 package services
 
 import (
-	"fmt"
 	"io/ioutil"
+	"log"
 	"net/http"
 	"strings"
 )
 
-func WeatherByCity(city string, country string, temprature bool, description bool, humidity bool) {
+type WeatherForcast struct {
+	location    string
+	forcastDate string
+	forcast     string
+	tempurature string
+	humidity    string
+}
+
+func WeatherByCity(city string, country string, description bool, temprature bool, humidity bool) (*WeatherForcast, error) {
 	var url strings.Builder
 	url.WriteString("http://api.openweathermap.org/data/2.5/weather")
 	url.WriteString("?q=")
@@ -22,9 +30,18 @@ func WeatherByCity(city string, country string, temprature bool, description boo
 	response, err := http.Get(url.String())
 
 	if err != nil {
-		fmt.Printf("The HTTP request failed with error %s\n", err)
+		log.Fatal(err)
+		return nil, err
 	} else {
 		data, _ := ioutil.ReadAll(response.Body)
-		fmt.Println(string(data))
+
+		weatherForcast := &WeatherForcast{
+			location:    string(data),
+			forcastDate: "string",
+			forcast:     "string",
+			tempurature: "string",
+			humidity:    "string",
+		}
+		return weatherForcast, nil
 	}
 }

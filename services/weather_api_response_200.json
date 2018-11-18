@@ -1,0 +1,42 @@
+{
+  "coord": {
+    "lon": -84.39,
+    "lat": 33.75
+  },
+  "weather": [
+    {
+      "id": 701,
+      "main": "Mist",
+      "description": "mist",
+      "icon": "50n"
+    }
+  ],
+  "base": "stations",
+  "main": {
+    "temp": 275.88,
+    "pressure": 1024,
+    "humidity": 100,
+    "temp_min": 274.85,
+    "temp_max": 278.15
+  },
+  "visibility": 16093,
+  "wind": {
+    "speed": 1.17,
+    "deg": 54.5058
+  },
+  "clouds": {
+    "all": 1
+  },
+  "dt": 1542540900,
+  "sys": {
+    "type": 1,
+    "id": 749,
+    "message": 0.0047,
+    "country": "US",
+    "sunrise": 1542543171,
+    "sunset": 1542580352
+  },
+  "id": 4180439,
+  "name": "Atlanta",
+  "cod": 200
+}

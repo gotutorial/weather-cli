@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"os"
 	"sort"
@@ -45,7 +46,8 @@ func main() {
 
 	app.Action = func(c *cli.Context) error {
 		if len(city) > 0 {
-			services.WeatherByCity("Atlanta", "", true, true, true)
+			var reponse = services.WeatherByCity("Atlanta", "", true, true, true)
+			fmt.Println(reponse)
 		}
 
 		return nil

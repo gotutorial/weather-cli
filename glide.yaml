@@ -1,3 +1,5 @@
 package: github.com/gotutorial/weather-cli
 import:
 - package: github.com/urfave/cli
+- package: github.com/Jeffail/gabs
+- package: gopkg.in/h2non/gock.v1

@@ -1,6 +1,12 @@
-hash: 0b87f53d8e751c447d6aed016105321b278e5efc89e81edf512e4795115e91b9
-updated: 2018-11-10T21:53:10.216331-05:00
+hash: 04adaffb6afe32d01a46a3b2b8aff985412124a5ca6f09026ed9dab89b0d067d
+updated: 2018-11-18T08:03:36.115392-05:00
 imports:
+- name: github.com/Jeffail/gabs
+  version: 7be49c3f43696c7ca8c9a76d6836703d83aea404
 - name: github.com/urfave/cli
   version: b67dcf995b6a7b7f14fad5fcb7cc5441b05e814b
-testImports: []
+- name: gopkg.in/h2non/gock.v1
+  version: a6029d17e101ac1594adafea9e63fd8c988a8701
+testImports:
+- name: github.com/nbio/st
+  version: e9e8d9816f3268def6dcbd2dea03301f40e9de94
