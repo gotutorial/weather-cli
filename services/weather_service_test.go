@@ -15,10 +15,10 @@ func TestSimple(t *testing.T) {
 		Reply(200).
 		File("weather_api_response_200.json")
 
-	currentWeather, _ := CurrentWeatherByCity("Atlanta", "", true, true, true)
+	currentWeatherJson, _ := CurrentWeatherByCity("Atlanta", "", true, true, true)
 
-	st.Expect(t, currentWeather.location, `Atlanta`)
-	st.Expect(t, currentWeather.description, `mist`)
+	st.Expect(t, currentWeatherJson, `{"location":"Atlanta","description":"mist","tempurature":"string","humidity":"string"}`)
+
 	// Verify that we don't have pending mocks
 	st.Expect(t, gock.IsDone(), true)
 }

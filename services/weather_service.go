@@ -1,6 +1,7 @@
 package services
 
 import (
+	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"log"
@@ -11,13 +12,13 @@ import (
 )
 
 type CurrentWeather struct {
-	location    string
-	description string
-	tempurature string
-	humidity    string
+	Location    string `json:"location"`
+	Description string `json:"description"`
+	Tempurature string `json:"tempurature"`
+	Humidity    string `json:"humidity"`
 }
 
-func CurrentWeatherByCity(city string, country string, description bool, temprature bool, humidity bool) (*CurrentWeather, error) {
+func CurrentWeatherByCity(city string, country string, description bool, temprature bool, humidity bool) (string, error) {
 	var url strings.Builder
 	url.WriteString("http://api.openweathermap.org/data/2.5/weather")
 	url.WriteString("?q=")
@@ -33,7 +34,7 @@ func CurrentWeatherByCity(city string, country string, description bool, temprat
 
 	if err != nil {
 		log.Fatal(err)
-		return nil, err
+		return "", err
 	} else {
 		data, _ := ioutil.ReadAll(response.Body)
 
@@ -41,7 +42,7 @@ func CurrentWeatherByCity(city string, country string, description bool, temprat
 
 		if err != nil {
 			log.Fatal(err)
-			return nil, err
+			return "", err
 		}
 
 		location, _ := jsonParsed.Path("name").Data().(string)
@@ -56,14 +57,20 @@ func CurrentWeatherByCity(city string, country string, description bool, temprat
 			}
 		}
 
-		fmt.Println(len(descriptions))
-
 		currentWeather := &CurrentWeather{
-			location:    location,
-			description: descriptionString,
-			tempurature: "string",
-			humidity:    "string",
+			Location:    location,
+			Description: descriptionString,
+			Tempurature: "string",
+			Humidity:    "string",
 		}
-		return currentWeather, nil
+
+		b1, err := json.Marshal(currentWeather)
+		if err != nil {
+			fmt.Println(err)
+			log.Fatal(err)
+			return "", err
+		}
+		fmt.Println(string(b1))
+		return string(b1), nil
 	}
 }
