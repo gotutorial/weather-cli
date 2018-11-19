@@ -23,25 +23,25 @@ func main() {
 	app.Flags = []cli.Flag{
 		cli.StringFlag{
 			Name:        "city, ct",
-			Usage:       "The city name you are looking for its current weather condition (defaut is 'Atlanta')",
+			Usage:       "The city name you are looking for its current weather condition",
 			Destination: &city,
 		},
 		cli.StringFlag{
 			Name:        "country, co",
-			Usage:       "The country name you are looking for its current weather condition (default is empty)",
+			Usage:       "The country name you are looking for its current weather condition",
 			Destination: &country,
 		},
 		cli.BoolFlag{
 			Name:  "temp, tm",
-			Usage: "The location current temperature",
+			Usage: "Current temperature",
 		},
 		cli.BoolFlag{
 			Name:  "desc, ds",
-			Usage: "The location current description",
+			Usage: "Current description",
 		},
 		cli.BoolFlag{
 			Name:  "hum, hm",
-			Usage: "The location current humidity",
+			Usage: "Current humidity",
 		},
 		cli.BoolFlag{
 			Name:  "all, a",
