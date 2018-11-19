@@ -43,11 +43,20 @@ func main() {
 			Name:  "hum, hm",
 			Usage: "The location current humidity",
 		},
+		cli.BoolFlag{
+			Name:  "all, a",
+			Usage: "Print all weather attributes",
+		},
 	}
 
 	app.Action = func(c *cli.Context) error {
 		if len(city) > 0 {
-			var reponse, err = services.CurrentWeatherByCity(city, country, true, true, true)
+			var showDescription bool
+			showDescription = false
+			if !(c.Bool("desc") || c.Bool("temp") || c.Bool("hum")) || c.Bool("desc") || c.Bool("all") {
+				showDescription = true
+			}
+			var reponse, err = services.CurrentWeatherByCity(city, country, showDescription, c.Bool("temp") || c.Bool("all"), c.Bool("hum") || c.Bool("all"))
 			if err != nil {
 				log.Fatal(err)
 			} else {
