@@ -18,17 +18,18 @@ func main() {
 	app.HideHelp = false
 
 	var city string
+	var country string
 
 	app.Flags = []cli.Flag{
 		cli.StringFlag{
 			Name:        "city, ct",
-			Value:       "Atlanta",
 			Usage:       "The city name you are looking for its current weather condition (defaut is 'Atlanta')",
 			Destination: &city,
 		},
 		cli.StringFlag{
-			Name:  "country, co",
-			Usage: "The country name you are looking for its current weather condition (default is empty)",
+			Name:        "country, co",
+			Usage:       "The country name you are looking for its current weather condition (default is empty)",
+			Destination: &country,
 		},
 		cli.BoolFlag{
 			Name:  "temp, tm",
@@ -46,8 +47,15 @@ func main() {
 
 	app.Action = func(c *cli.Context) error {
 		if len(city) > 0 {
-			var reponse = services.CurrentWeatherByCity("Atlanta", "", true, true, true)
-			fmt.Println(reponse)
+			var reponse, err = services.CurrentWeatherByCity(city, country, true, true, true)
+			if err != nil {
+				log.Fatal(err)
+			} else {
+				fmt.Println(reponse)
+			}
+		} else {
+			fmt.Println("City is required. Pass the city value using --city")
+			cli.ShowAppHelp(c)
 		}
 
 		return nil

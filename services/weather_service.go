@@ -2,7 +2,6 @@ package services
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -64,13 +63,12 @@ func CurrentWeatherByCity(city string, country string, description bool, temprat
 			Humidity:    "string",
 		}
 
-		b1, err := json.Marshal(currentWeather)
+		currentWeatherJson, err := json.Marshal(currentWeather)
 		if err != nil {
-			fmt.Println(err)
+
 			log.Fatal(err)
 			return "", err
 		}
-		fmt.Println(string(b1))
-		return string(b1), nil
+		return string(currentWeatherJson), nil
 	}
 }
