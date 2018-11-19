@@ -17,7 +17,7 @@ func TestShowAllWeatherAttributes(t *testing.T) {
 
 	currentWeatherJson, _ := CurrentWeatherByCity("Atlanta", "", true, true, true)
 
-	st.Expect(t, currentWeatherJson, `{"location":"Columbus","description":"clear sky","tempurature":50.73,"humidity":81}`)
+	st.Expect(t, currentWeatherJson, `{"location":"Columbus","description":"clear sky","temperature":50.73,"humidity":81}`)
 
 	// Verify that we don't have pending mocks
 	st.Expect(t, gock.IsDone(), true)
@@ -49,7 +49,7 @@ func TestShowTemprature(t *testing.T) {
 
 	currentWeatherJson, _ := CurrentWeatherByCity("Atlanta", "", false, true, false)
 
-	st.Expect(t, currentWeatherJson, `{"location":"Columbus","tempurature":50.73}`)
+	st.Expect(t, currentWeatherJson, `{"location":"Columbus","temperature":50.73}`)
 
 	// Verify that we don't have pending mocks
 	st.Expect(t, gock.IsDone(), true)

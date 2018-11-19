@@ -13,11 +13,11 @@ import (
 type CurrentWeather struct {
 	Location    string  `json:"location"`
 	Description string  `json:"description,omitempty"`
-	Temprature  float64 `json:"tempurature,omitempty"`
+	Temperature float64 `json:"temperature,omitempty"`
 	Humidity    float64 `json:"humidity,omitempty"`
 }
 
-func CurrentWeatherByCity(city string, country string, showDescription bool, showTemprature bool, showHumidity bool) (string, error) {
+func CurrentWeatherByCity(city string, country string, showDescription bool, showTemperature bool, showHumidity bool) (string, error) {
 	var url strings.Builder
 	url.WriteString("http://api.openweathermap.org/data/2.5/weather")
 	url.WriteString("?q=")
@@ -47,9 +47,9 @@ func CurrentWeatherByCity(city string, country string, showDescription bool, sho
 
 		location, _ := jsonParsed.Path("name").Data().(string)
 
-		var temprature float64
-		if showTemprature {
-			temprature, _ = jsonParsed.Path("main.temp").Data().(float64)
+		var temperature float64
+		if showTemperature {
+			temperature, _ = jsonParsed.Path("main.temp").Data().(float64)
 		}
 
 		var humidity float64
@@ -72,7 +72,7 @@ func CurrentWeatherByCity(city string, country string, showDescription bool, sho
 		currentWeather := &CurrentWeather{
 			Location:    location,
 			Description: descriptionString,
-			Temprature:  temprature,
+			Temperature: temperature,
 			Humidity:    humidity,
 		}
 

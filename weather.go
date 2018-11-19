@@ -13,7 +13,7 @@ import (
 func main() {
 	app := cli.NewApp() // := is the Short variable declarations
 	app.Name = "Weather CLI Tool"
-	app.Usage = "Prompt the current weather condition for a city, zipcode or georaphical coordination"
+	app.Usage = "Prompt the current weather condition for a city"
 	app.Version = "1.0.0"
 	app.HideHelp = false
 
@@ -22,25 +22,25 @@ func main() {
 
 	app.Flags = []cli.Flag{
 		cli.StringFlag{
-			Name:        "city, ct",
+			Name:        "city, c",
 			Usage:       "The city name you are looking for its current weather condition",
 			Destination: &city,
 		},
 		cli.StringFlag{
-			Name:        "country, co",
+			Name:        "country, o",
 			Usage:       "The country name you are looking for its current weather condition",
 			Destination: &country,
 		},
 		cli.BoolFlag{
-			Name:  "temp, tm",
+			Name:  "temp, t",
 			Usage: "Current temperature",
 		},
 		cli.BoolFlag{
-			Name:  "desc, ds",
+			Name:  "desc, d",
 			Usage: "Current description",
 		},
 		cli.BoolFlag{
-			Name:  "hum, hm",
+			Name:  "hum, m",
 			Usage: "Current humidity",
 		},
 		cli.BoolFlag{
@@ -63,7 +63,7 @@ func main() {
 				fmt.Println(reponse)
 			}
 		} else {
-			fmt.Println("City is required. Pass the city value using --city")
+			fmt.Println("City is required. Pass the city value using -c or --city")
 			cli.ShowAppHelp(c)
 		}
 
